@@ -12,12 +12,8 @@ namespace Jacubovich
         
         public static void Main(string[] args)
         {
-            
-            
-            
-            
             StartGame();
-            
+            Console.ReadLine();
         }
 
         public static void StartGame()
