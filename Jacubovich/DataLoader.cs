@@ -1,64 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace Jacubovich
 {
     public class DataLoader
     {
         const string directory = "../../Data";
-        const string jsonFileName = "myJson.json";
         const string txtFileName = "myWords.txt";
-
-        public static void SaveJson(string[] words)
-        {
-            string json = JsonConvert.SerializeObject(words);
-            SaveJsonFile(json);
-        }
-
-        public static string[] Load()
-        {
-            try
-            {
-                string content = File.ReadAllText($"{directory}/{jsonFileName}");
-                if (string.IsNullOrEmpty(content))
-                {
-                    throw new ApplicationException($"файл {jsonFileName} пустой");
-                }
-                string[] words = JsonConvert.DeserializeObject<string[]>(content);
-
-                return words;
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Console.WriteLine($"Отсутствует директория {directory}");
-                return new string[0];
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine($"Отсутствует файл {jsonFileName}");
-                return new string[0];
-            }
-            catch (ApplicationException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new string[0];
-            }
-        }
-
-        private static void SaveJsonFile(string content)
-        {
-            try
-            {
-                File.WriteAllText($"{directory}/{jsonFileName}", content);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Directory.CreateDirectory(directory);
-                SaveJsonFile(content);
-            }
-        }
         
         private static void SaveTxtFile(List<string> content)
         {

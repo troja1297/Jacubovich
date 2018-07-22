@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace Jacubovich
 {
@@ -117,6 +114,46 @@ namespace Jacubovich
 
             return result;
         }
-    }
 
+        public string GetAnswer(string answer, string word, string encryptWord, out bool allright)
+        {
+            List<char> encWordArr = new List<char>(encryptWord.ToCharArray());
+            List<char> wordArr = new List<char>(word.ToCharArray());
+            List<char> answerArr = new List<char>(answer.ToCharArray());
+            if (answerArr.Count == 1)
+            {
+                if (wordArr.Contains(answer[0]))
+                {
+                    for (int i = 0; i < wordArr.Count; i++)
+                    {
+                        if (answer[0] == wordArr[i])
+                        {
+                            encWordArr[i] = answer[0];
+                            allright = true;
+                            return new string(encWordArr.ToArray());
+                        }
+                    }
+                } else
+                {
+                    allright = false;
+                    return encryptWord;
+                }
+            }
+            else
+            {
+                if (answer == word)
+                {
+                    allright = true;
+                    return answer;
+                }
+                else
+                {
+                    allright = false;
+                    return encryptWord;
+                }
+            }
+            allright = false;
+            return encryptWord;
+        }
+    }
 }
