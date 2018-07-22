@@ -4,19 +4,31 @@ using Microsoft.SqlServer.Server;
 
 namespace Jacubovich
 {
+    
     internal class Program
     {
         private static Random rnd = MyRandom.Rand();
         public static void Main(string[] args)
         {
-            List<string> a = DataLoader.LoadTxtFile();
-            WordGenerator wg = new WordGenerator();
-            string g = a[rnd.Next(a.Count)];
-            wg.Word = g;
-            wg.Encrypting(1);
             
-            Console.WriteLine(g);
-            Console.WriteLine(wg.EncryptedWord);
+            
+            
+            
+            StartGame();
+            
         }
+
+        public static void StartGame()
+        {
+            int difficult = rnd.Next(1, 5);
+            Console.WriteLine($"Уровень сложности: {difficult}");
+            WordGenerator generator = new WordGenerator();
+            List<string> a = DataLoader.LoadTxtFile();
+            string word = a[rnd.Next(a.Count)];
+            generator.Word = word;
+            generator.Encrypting(difficult);  
+        }
+        
+        
     }
 }

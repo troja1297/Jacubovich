@@ -52,11 +52,7 @@ namespace Jacubovich
                     {
                         for (int j = 0; j < bufList.Count; j++)
                         {
-                            if (bufList[j] != i)
-                            {
-                                encryptedWord[i] = '*';
-                                
-                            } else if (bufList[j] == i)
+                            if (bufList[j] == i)
                             {
                                 encryptedWord[i] = bufWord[i];
                                 bufList.RemoveAt(j);
@@ -72,20 +68,16 @@ namespace Jacubovich
                     {
                         for (int j = 0; j < bufList.Count; j++)
                         {
-                            if (bufList[j] != i)
-                            {
-                                encryptedWord[i] = '*';
+                            
                                 
-                            } else if (bufList[j] == i)
+                            if (bufList[j] == i)
                             {
                                 encryptedWord[i] = bufWord[i];
                                 bufList.RemoveAt(j);
                             }
                         }
                     } 
-                    
                 }
-                string a = new string(encryptedWord);
                 EncryptedWord = new string(encryptedWord);
                 
             }
@@ -124,7 +116,6 @@ namespace Jacubovich
             }
 
             return result;
-
         }
     }
 
