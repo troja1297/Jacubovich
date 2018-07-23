@@ -1,9 +1,6 @@
 C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\bin\Debug\Jacubovich.exe
 C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\bin\Debug\Jacubovich.pdb
-C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\obj\Debug\Jacubovich.csprojAssemblyReference.cache
 C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\obj\Debug\Jacubovich.csproj.CoreCompileInputs.cache
-C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\obj\Debug\Jacubovich.csproj.CopyComplete
 C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\obj\Debug\Jacubovich.exe
 C:\Users\Vladislav Andreev\RiderProjects\Jacubovich\Jacubovich\obj\Debug\Jacubovich.pdb

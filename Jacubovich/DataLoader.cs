@@ -22,42 +22,68 @@ namespace Jacubovich
             }
         }
 
-        private static void SaveTxtFile(string line)
+        public static void SaveTxtFile(string line, string mTxtFileName)
         {
             try
             {
-                File.WriteAllText($"{directory}/{txtFileName}", "\n" + line);
+                using (StreamWriter str = new StreamWriter($"{directory}/{mTxtFileName}", true))
+                {
+                    str.WriteLine(line);
+                }
             }
             catch (DirectoryNotFoundException)
             {
                 Directory.CreateDirectory(directory);
-                SaveTxtFile(line);
             }
         }
         
         public static List<string> DeletFromTxt(string value)
         {
-            List<string> words = LoadTxtFile();
+            List<string> words = LoadTxtFile(txtFileName);
             words.Remove(value);
             SaveTxtFile(words);
-            return LoadTxtFile();
+            return LoadTxtFile(txtFileName);
+        }
+
+        public static void ClearText(string mTxtFileName)
+        {
+            File.WriteAllText($"{directory}/{mTxtFileName}", string.Empty);
+        }
+
+        public static void Rewrite()
+        {
+            List<string> a = LoadTxtFile("oldWords.txt");
+            try
+            {
+                using (StreamWriter str = new StreamWriter($"{directory}/{txtFileName}", true))
+                {
+                    foreach (string s in a)
+                    {
+                        str.WriteLine(s);
+                    }
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(directory);
+            }
+            
         }
         
-        
-        public static List<string> LoadTxtFile()
+        public static List<string> LoadTxtFile(string mTxtFileName)
         {
             try
             {
                 List<string> words = new List<string>();
                 string line = null;
-                using (StreamReader sr = new StreamReader($"{directory}/{txtFileName}", System.Text.Encoding.Default))
+                using (StreamReader sr = new StreamReader($"{directory}/{mTxtFileName}", System.Text.Encoding.Default))
                 {
                     while ((line = sr.ReadLine()) != null)
                     {
                         
                         if (string.IsNullOrEmpty(line))
                         {
-                            throw new ApplicationException($"файл {txtFileName} пустой");
+                            throw new ApplicationException($"файл {mTxtFileName} пустой");
                         }
                         words.Add(line);
                     }
@@ -72,7 +98,7 @@ namespace Jacubovich
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine($"Отсутствует файл {txtFileName}");
+                Console.WriteLine($"Отсутствует файл {mTxtFileName}");
                 return new List<string>();
             }
             catch (ApplicationException ex)

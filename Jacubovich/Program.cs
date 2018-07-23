@@ -23,8 +23,16 @@ namespace Jacubovich
             int difficult = rnd.Next(1, 5);
             Console.WriteLine($"Уровень сложности: {difficult}");
             
-            List<string> a = DataLoader.LoadTxtFile();
+            List<string> a = DataLoader.LoadTxtFile("myWords.txt");
+            if (a.Count == 0)
+            {
+                DataLoader.Rewrite();
+                a = DataLoader.LoadTxtFile("myWords.txt");
+                DataLoader.ClearText("oldWords.txt");
+                Console.WriteLine("Новая игра!");
+            }
             string word = a[rnd.Next(a.Count)];
+            DataLoader.SaveTxtFile(word, "oldWords.txt");
             generator.Word = word;
             generator.Encrypting(difficult);
             string encrypWord = generator.EncryptedWord;
@@ -51,6 +59,7 @@ namespace Jacubovich
                 {
                     Console.WriteLine("Попытки закнчились. Вы проиграли");
                     DataLoader.DeletFromTxt(word);
+                    
                     StartGame();
                     
                 }
